@@ -52,7 +52,16 @@ class LoginForm extends StatelessWidget {
           ),
 
           SizedBox(height: 40.0,),
-          Text('¿Olvidaste la contraseña?'),
+          ElevatedButton(
+            child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+            child: Text('Regístrate'),
+            decoration: BoxDecoration(
+            shape: BoxShape.rectangle
+            ),
+            ),
+            onPressed: () => Navigator.pushReplacementNamed(context, 'registro')
+            ),
           SizedBox(height: 100.0,)
         ],
       ),

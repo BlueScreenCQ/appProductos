@@ -14,7 +14,7 @@ class FormValidation extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Form Validation APP',
-        initialRoute: 'home',
+        initialRoute: 'login',
         routes: {
           'home'      : (_) => HomePage(),
           'login'    : (_) => LoginPage(),

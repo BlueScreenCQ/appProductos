@@ -53,9 +53,34 @@ class HomePage extends StatelessWidget {
 
   Widget _crearItem(BuildContext context, ProductoModel prod){
 
-    return ListTile(
-      title: Text('${prod.titulo} - ${prod.valor}'),
-      subtitle: Text(prod.id),
+    return Dismissible(
+      key: UniqueKey(),
+      background: Container(
+        color: Colors.red,
+      ),
+      onDismissed: (direccion){
+        productoProvider.borrarProducto(prod.id);
+      },
+      child: Card(
+        child: Column(
+          children: [
+            (prod.fotoUrl == null)
+            ? Image(image: AssetImage('assets/no-image.png'))
+            : FadeInImage(
+              image: NetworkImage(prod.fotoUrl),
+              placeholder: AssetImage('assets/jar-loading.gif'),
+              height: 300.0,
+              width: double.infinity,
+              fit: BoxFit.cover,
+            ),
+              ListTile(
+                title: Text('${prod.titulo} - ${prod.valor}'),
+                subtitle: Text(prod.id),
+                onTap: () => Navigator.pushNamed(context, 'producto', arguments: prod ),
+              ),
+          ],
+        ),
+      )
     );
   }
 }
