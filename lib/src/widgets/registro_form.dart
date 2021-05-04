@@ -6,7 +6,7 @@ import 'package:form_validation/src/bloc/provider.dart';
 import 'package:form_validation/src/providers/usuario_provider.dart';
 import 'package:form_validation/src/utils/utils.dart';
 
-class LoginForm extends StatelessWidget {
+class RegistroForm extends StatelessWidget {
 
   final usuarioProvider = new UsuarioProvider();
 
@@ -44,7 +44,7 @@ class LoginForm extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Text('Login', style: TextStyle(fontSize: 20.0),),
+                Text('Crear cuenta', style: TextStyle(fontSize: 20.0),),
                 SizedBox(height: 30.0,),
                 _crearEmail(bloc),
                 SizedBox(height: 30.0,),
@@ -59,12 +59,12 @@ class LoginForm extends StatelessWidget {
           ElevatedButton(
             child: Container(
             padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
-            child: Text('Regístrate'),
+            child: Text('¿Ya tiemes ciemta? Haz login'),
             decoration: BoxDecoration(
             shape: BoxShape.rectangle
             ),
             ),
-            onPressed: () => Navigator.pushReplacementNamed(context, 'registro')
+            onPressed: () => Navigator.pushReplacementNamed(context, 'login')
             ),
           SizedBox(height: 100.0,)
         ],
@@ -125,28 +125,31 @@ class LoginForm extends StatelessWidget {
         return ElevatedButton(
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 20.0),
-            child: Text('Acceder'),
+            child: Text('Registrar'),
             decoration: BoxDecoration(
                 shape: BoxShape.rectangle
             ),
           ),
-          onPressed: snapshot.hasData ? () => _login(bloc, context) : null
+          onPressed: snapshot.hasData ? () => _register(bloc, context) : null
         );
       }
     );
   }
 
-  _login(LoginBloc bloc, BuildContext context) async {
+  _register(LoginBloc bloc, BuildContext context) async{
 
-   Map info = await usuarioProvider.login(bloc.email, bloc.password);
+    //Navigator.pushReplacementNamed(context, 'home');
 
-   if(info['ok']){
-     Navigator.pushReplacementNamed(context, 'home');
-   }else{
-     mostrarAlerta(context, "Los datos que ha introducido son incorrectos.");
-   }
+    Map info = await usuarioProvider.nuevoUsuario(bloc.email, bloc.password);
+
+    if(info['ok']){
+      Navigator.pushReplacementNamed(context, 'home');
+    }else{
+      mostrarAlerta(context, "Los datos que ha introducido son incorrectos.");
+    }
 
   }
+
 }
 
 
