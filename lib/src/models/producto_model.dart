@@ -26,7 +26,7 @@ class ProductoModel {
   factory ProductoModel.fromJson(Map<String, dynamic> json) => new ProductoModel(
     id         : json["id"],
     titulo     : json["titulo"],
-//    valor      : json["valor"] as double, TODO hay que ver como parsearlo a dobule
+    valor      : json["valor"] /1,
     disponible : json["disponible"],
     fotoUrl    : json["fotoUrl"],
   );
