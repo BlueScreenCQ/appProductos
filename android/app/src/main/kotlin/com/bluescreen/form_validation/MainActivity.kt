@@ -1,4 +1,4 @@
-package com.example.form_validation
+package com.bluescreen.form_validation
 
 import io.flutter.embedding.android.FlutterActivity
 

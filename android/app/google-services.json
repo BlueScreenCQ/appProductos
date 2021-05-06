@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1023545215982",
+    "firebase_url": "https://fluttercurso-311817-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "fluttercurso-311817",
+    "storage_bucket": "fluttercurso-311817.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1023545215982:android:63603d6948cdc737c65cff",
+        "android_client_info": {
+          "package_name": "com.bluescreen.form_validation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1023545215982-n7d1c81mq29p491isvurnqg68k613dbb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bluescreen.form_validation",
+            "certificate_hash": "399989883e64e6fc00feb908eeccf5f6b48d1d72"
+          }
+        },
+        {
+          "client_id": "1023545215982-om7c9cs8km762ug713o05u04m98isuce.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADBj_DylL58n0cXiepXVZovNAL-ilSemM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1023545215982-om7c9cs8km762ug713o05u04m98isuce.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

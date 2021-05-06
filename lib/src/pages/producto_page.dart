@@ -88,7 +88,7 @@ class _ProductoPageState extends State<ProductoPage> {
 
   Widget _crearPrecio(){
     return TextFormField(
-      // initialValue: producto.valor.toString(),
+      initialValue: producto.valor.toString(),
       keyboardType: TextInputType.numberWithOptions(decimal: true),
       decoration: InputDecoration(
         labelText: 'Precio',
