@@ -1,3 +1,4 @@
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /*
@@ -9,7 +10,6 @@ import 'package:shared_preferences/shared_preferences.dart';
     await prefs.initPrefs();
 
     Recuerden que el main() debe de ser async {...
-
 */
 
 class PreferenciasUsuario {
@@ -47,5 +47,13 @@ class PreferenciasUsuario {
     _prefs.setString('ultimaPagina', value);
   }
 
+  //TOKEN DE GOOGLE
+  get googleToken {
+    return _prefs.getStringList('googleToken') ?? null;
+  }
+
+  set googleToken( List<String> value ) {
+    _prefs.setStringList('googleToken', value);
+  }
 }
 

@@ -1,6 +1,9 @@
+import 'package:form_validation/src/preferences/preferences.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleSingInServices {
+
+  static final _prefs = PreferenciasUsuario();
 
   static GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: [
@@ -18,6 +21,13 @@ class GoogleSingInServices {
       print('========idToken=========');
       print(googleKey.idToken);
 
+      //Guardamos los tokens en las preferencias
+      List<String> _googlePrefs = [];
+      _googlePrefs.add(acount.email);
+      _googlePrefs.add(acount.displayName);
+      _googlePrefs.add(acount.photoUrl);
+      _prefs.googleToken = _googlePrefs;
+
       // TODO Lamar a un servicio REST con el IdToken para autenticar en el backend
 
       return acount;
@@ -31,6 +41,7 @@ class GoogleSingInServices {
 
   static Future signOut() async {
     await _googleSignIn.signOut();
+    _prefs.googleToken = null;
   }
 
 }

@@ -164,7 +164,6 @@ class LoginForm extends StatelessWidget {
         GoogleSignInAccount cuenta = await GoogleSingInServices.signInWithGoogle();
 
         if(cuenta != null){
-
           Navigator.pushReplacementNamed(context, 'home');
         }
       },
@@ -180,7 +179,6 @@ class LoginForm extends StatelessWidget {
    }else{
      mostrarAlerta(context, "Los datos que ha introducido son incorrectos.");
    }
-
   }
 }
 

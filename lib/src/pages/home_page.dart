@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_validation/src/bloc/provider.dart';
 import 'package:form_validation/src/models/producto_model.dart';
+import 'package:form_validation/src/preferences/preferences.dart';
 import 'package:form_validation/src/providers/producto_provider.dart';
 import 'package:form_validation/src/services/google_signin_service.dart';
+import 'package:form_validation/src/utils/utils.dart' as utils;
 
 class HomePage extends StatefulWidget {
 
@@ -13,6 +15,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final productoProvider = ProductoProvider();
+  final _prefs = PreferenciasUsuario();
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +26,12 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('Home'),
         actions: [
+          IconButton(
+            icon: CircleAvatar(
+              backgroundImage: NetworkImage(_prefs.googleToken[2]),
+            ),
+            onPressed: () => utils.mostrarInfoCuenta(context, _prefs.googleToken),
+          ),
           IconButton(
             icon: Icon(FontAwesomeIcons.doorOpen),
             onPressed: () {

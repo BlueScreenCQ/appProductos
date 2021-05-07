@@ -29,3 +29,32 @@ void mostrarAlerta(BuildContext context, String mensaje) {
     }
   );
 }
+
+void mostrarInfoCuenta(BuildContext context, List<String> prefs) {
+
+  showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Cuenta de Google', textAlign: TextAlign.center,),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                backgroundImage: NetworkImage(prefs[2]),
+                ),
+              Text(prefs[1], style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+              Text(prefs[0], style: TextStyle(fontSize: 15),),
+            ],
+          ),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: Text('Ok')
+            )
+          ],
+        );
+      }
+  );
+}
