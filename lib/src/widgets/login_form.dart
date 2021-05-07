@@ -1,12 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_validation/src/bloc/provider.dart';
+import 'package:form_validation/src/preferences/preferences.dart';
 import 'package:form_validation/src/providers/usuario_provider.dart';
+import 'package:form_validation/src/services/google_signin_service.dart';
 import 'package:form_validation/src/utils/utils.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginForm extends StatelessWidget {
 
   final usuarioProvider = new UsuarioProvider();
+  final prefs = PreferenciasUsuario();
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +54,9 @@ class LoginForm extends StatelessWidget {
                 _crearPassword(bloc),
                 SizedBox(height: 30.0,),
                 _crearBoton(bloc),
+                //SignIn con Google
+                SizedBox(height: 30.0,),
+                _botonGoogle(context),
               ],
             ),
           ),
@@ -134,6 +142,32 @@ class LoginForm extends StatelessWidget {
     );
   }
 
+  Widget _botonGoogle(BuildContext context){
+
+    return MaterialButton(
+        splashColor: Colors.transparent,
+        color: Colors.red,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 20.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(FontAwesomeIcons.google),
+              Text('  Sign in with Google', style: TextStyle(color: Colors.white, fontSize: 17),)
+            ],
+          ),
+        ),
+      onPressed: () async {
+        GoogleSignInAccount cuenta = await GoogleSingInServices.signInWithGoogle();
+
+        if(cuenta != null){
+          Navigator.pushReplacementNamed(context, 'home');
+        }
+      },
+    );
+  }
+
   _login(LoginBloc bloc, BuildContext context) async {
 
    Map info = await usuarioProvider.login(bloc.email, bloc.password);
@@ -143,7 +177,6 @@ class LoginForm extends StatelessWidget {
    }else{
      mostrarAlerta(context, "Los datos que ha introducido son incorrectos.");
    }
-
   }
 }
 

@@ -43,7 +43,7 @@ class ProductoProvider {
 
     final resp = await http.get(url);
 
-    final Map<String,dynamic> decodedData = json.decode(resp.body);
+    final Map<String, dynamic> decodedData = json.decode(resp.body);
 
     final List<ProductoModel> productos = [];
 

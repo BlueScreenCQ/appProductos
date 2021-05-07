@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.form_validation">
+    package="com.bluescreen.form_validation">
    <application
         android:label="form_validation"
         android:icon="@mipmap/ic_launcher">

@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_validation/src/bloc/provider.dart';
 import 'package:form_validation/src/models/producto_model.dart';
+import 'package:form_validation/src/preferences/preferences.dart';
 import 'package:form_validation/src/providers/producto_provider.dart';
+import 'package:form_validation/src/services/google_signin_service.dart';
+import 'package:form_validation/src/utils/utils.dart' as utils;
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
 
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final productoProvider = ProductoProvider();
+  final _prefs = PreferenciasUsuario();
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +25,20 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
+        actions: [
+          IconButton(
+            icon: CircleAvatar(
+              backgroundImage: NetworkImage(_prefs.googleToken[2]),
+            ),
+            onPressed: () => utils.mostrarInfoCuenta(context, _prefs.googleToken),
+          ),
+          IconButton(
+            icon: Icon(FontAwesomeIcons.doorOpen),
+            onPressed: () {
+              GoogleSingInServices.signOut();
+              Navigator.pushReplacementNamed(context, 'login');
+            })
+        ],
         ),
       body: _crearListado(),
       floatingActionButton: _crearBoton(context),
@@ -24,7 +48,7 @@ class HomePage extends StatelessWidget {
   Widget _crearBoton(BuildContext context) {
     return FloatingActionButton(
       child: Icon(Icons.add),
-      onPressed: () => Navigator.pushNamed(context, 'producto'),
+        onPressed: () => Navigator.pushNamed(context, 'producto').then((value) { setState(() { });})
     );
   }
 
@@ -74,9 +98,10 @@ class HomePage extends StatelessWidget {
               fit: BoxFit.cover,
             ),
               ListTile(
-                title: Text('${prod.titulo} - ${prod.valor}'),
+                title: Text('${prod.titulo} - ${prod.valor} €'),
                 subtitle: Text(prod.id),
-                onTap: () => Navigator.pushNamed(context, 'producto', arguments: prod ),
+                trailing: (prod.disponible) ? Icon(Icons.check, color: Colors.green) : Icon(Icons.cancel, color: Colors.red),
+                onTap: () => Navigator.pushNamed(context, 'producto', arguments: prod ).then((value) { setState(() { }); }),
               ),
           ],
         ),
