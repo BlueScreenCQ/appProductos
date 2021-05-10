@@ -51,6 +51,9 @@ class ProductoProvider {
 
     if(decodedData == null) return [];
 
+    //TODO si el token viene expirado. Podemos devolver al login
+    if(decodedData['error'] !=null) return [];
+
     decodedData.forEach((id, prod) {
       final prodTemp = ProductoModel.fromJson(prod);
       prodTemp.id= id;
