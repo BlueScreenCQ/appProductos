@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">curso_flutter</string>
+    <string name="facebook_app_id">2984697485125118</string>
+    <string name="fb_login_protocol_scheme">fb000000000000</string> //TODO falta este codigo
+</resources>
